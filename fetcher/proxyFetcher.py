@@ -189,7 +189,7 @@ class ProxyFetcher(object):
 
             print(ip)
 
-            print( tr.xpath('./td[0]/a/text()') )
+            print( tr.xpath('./td[1]/a/text()') )
 
             #yield ip
 

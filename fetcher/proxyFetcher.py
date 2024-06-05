@@ -164,7 +164,7 @@ class ProxyFetcher(object):
             yield ':'.join(proxy)
 
     #@staticmethod
-    def freeProxy11():
+    def freeProxy11(self):
         """ 稻壳代理 https://www.docip.net/ """
         print("----------11------")
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)

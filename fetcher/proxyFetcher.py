@@ -180,18 +180,20 @@ class ProxyFetcher(object):
         """ https://www.proxydocker.com/ """
         print("----------12------")
         url = "https://www.proxydocker.com"
-        tree = WebRequest().get(url).tree
-        trs = tree.xpath("//tbody[@id='proxylist_table']/tr")
-        print(trs)
+        tree = WebRequest().get(url).text
+        print(tree)
 
-        for tr in trs:
-            ip = "".join(tr.xpath('./td[1]/a/text()')).strip()
+        # trs = tree.xpath("//tbody[@id='proxylist_table']/tr")
+        # print(trs)
 
-            print(ip)
+        # for tr in trs:
+        #     ip = "".join(tr.xpath('./td[1]/a/text()')).strip()
 
-            print( tr.xpath('./td[1]/a/text()') )
+        #     print(ip)
 
-            #yield ip
+        #     print( tr.xpath('./td[1]/a/text()') )
+
+        #     #yield ip
 
     @staticmethod
     def freeProxy13():

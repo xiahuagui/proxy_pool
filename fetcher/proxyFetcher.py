@@ -180,11 +180,14 @@ class ProxyFetcher(object):
         """ https://www.proxydocker.com/ """
         url = "https://www.proxydocker.com"
         tree = WebRequest().get(url).tree
-        for tr in tree.xpath("//tbody[@id='proxylist_table']/tr"):
+        trs = tree.xpath("//tbody[@id='proxylist_table']/tr")
+        print(trs)
+
+        for tr in trs:
             ip = "".join(tr.xpath('./td[1]/a/text()')).strip()
 
             print(ip)
-            
+
             yield ip
 
     @staticmethod

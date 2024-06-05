@@ -45,8 +45,11 @@ TABLE_NAME = 'use_proxy'
 
 # ###### config the proxy fetch function ######
 PROXY_FETCHER = [
-    "freeProxy03",
+    "freeProxy12",
+    "freeProxy13",
+    "freeProxy14",
 ]
+#
 
 # ############# proxy validator #################
 # 代理验证目标网站

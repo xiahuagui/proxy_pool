@@ -166,9 +166,79 @@ class ProxyFetcher(object):
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)
         try:
             for each in r.json['data']:
+                if each['addr'].find("中国")!=-1:
+                    continue
                 yield each['ip']
         except Exception as e:
             print(e)
+
+    @staticmethod
+    def freeProxy12():
+        """ https://www.proxydocker.com/ """
+        url = "https://www.proxydocker.com"
+        tree = WebRequest().get(url).tree
+        for tr in tree.xpath("//tbody[@id='proxylist_table']/tr"):
+            ip = "".join(tr.xpath('./td[1]/a/text()')).strip()
+            yield ip
+
+    @staticmethod
+    def freeProxy13():
+        """ https://hide.mn/en/proxy-list/?start=0#list """
+        u = "https://hide.mn/en/proxy-list/?start={}#list"
+        for i in range(1, 191):
+            start = i * 64
+            url = u.format(start)
+            tree = WebRequest().get(url).tree
+            trs = tree.xpath("//div[@class='table_block']/table//tr")
+            if len(trs)<=1:
+                break
+            for tr in trs[1:]:
+                ip = "".join(tr.xpath('./td[1]/text()')).strip()
+                port = "".join(tr.xpath('./td[2]/text()')).strip()
+                yield "%s:%s" % (ip, port)
+
+
+    @staticmethod
+    def freeProxy14():
+        """ https://free-proxy-list.net """
+        u = "https://free-proxy-list.net"
+        tree = WebRequest().get(url).tree
+        trs = tree.xpath("//table[@class='table table-striped table-bordered']//tr")
+        if len(trs)<=1:
+            return
+        for tr in trs[1:]:
+            ip = "".join(tr.xpath('./td[1]/text()')).strip()
+            port = "".join(tr.xpath('./td[2]/text()')).strip()
+            yield "%s:%s" % (ip, port)
+
+    @staticmethod
+    def freeProxy15():
+        """ http://free-proxy.cz/en/proxylist/country/US/https/ping/all """
+        u = "http://free-proxy.cz/en/proxylist/country/US/https/ping/all"
+        tree = WebRequest().get(url).tree
+        trs = tree.xpath("//table[@id='proxy_list']//tr")
+        if len(trs)<=1:
+            return
+        for tr in trs[1:]:
+            ip = "".join(tr.xpath('./td[1]/text()')).strip()
+            port = "".join(tr.xpath('./td[2]/text()')).strip()
+            yield "%s:%s" % (ip, port)
+
+    @staticmethod
+    def freeProxy16():
+        """ https://www.proxynova.com/proxy-server-list/elite-proxies/ """
+        u = "https://www.proxynova.com/proxy-server-list/elite-proxies"
+        tree = WebRequest().get(url).tree
+        trs = tree.xpath("//table[@id='proxy_list']//tr")
+        if len(trs)<=1:
+            return
+        for tr in trs[1:]:
+            ip = "".join(tr.xpath('./td[1]/text()')).strip()
+            port = "".join(tr.xpath('./td[2]/text()')).strip()
+            yield "%s:%s" % (ip, port)
+
+
+
 
     # @staticmethod
     # def wallProxy01():

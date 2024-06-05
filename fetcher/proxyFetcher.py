@@ -172,7 +172,8 @@ class ProxyFetcher(object):
             for each in r.json['data']:
                 if each['addr'].find("中国")!=-1:
                     continue
-                yield each['ip']
+                print(each['ip'])
+                #yield each['ip']
         except Exception as e:
             print(e)
 

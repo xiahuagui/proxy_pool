@@ -163,22 +163,20 @@ class ProxyFetcher(object):
         for proxy in proxies:
             yield ':'.join(proxy)
 
-    #@staticmethod
-    def freeProxy11(self):
+    @staticmethod
+    def freeProxy11():
         """ 稻壳代理 https://www.docip.net/ """
-        print("----------11------")
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)
         try:
             for each in r.json['data']:
                 if each['addr'].find("中国")!=-1:
                     continue
-                print(each['ip'])
-                #yield each['ip']
+                yield each['ip']
         except Exception as e:
             print(e)
 
-    @staticmethod
-    def freeProxy12():
+    #@staticmethod
+    def freeProxy12(self):
         """ https://www.proxydocker.com/ """
         print("----------12------")
         url = "https://www.proxydocker.com"
@@ -191,7 +189,7 @@ class ProxyFetcher(object):
 
             print(ip)
 
-            yield ip
+            #yield ip
 
     @staticmethod
     def freeProxy13():
@@ -317,7 +315,7 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
-    p.freeProxy11()
+    p.freeProxy12()
     
     # print("---------------:", len(val))
     # for _ in p.freeProxy11():

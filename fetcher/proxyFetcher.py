@@ -178,6 +178,7 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy12():
         """ https://www.proxydocker.com/ """
+        print("----------12------")
         url = "https://www.proxydocker.com"
         tree = WebRequest().get(url).tree
         trs = tree.xpath("//tbody[@id='proxylist_table']/tr")

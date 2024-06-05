@@ -308,7 +308,7 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
-    for _ in p.freeProxy12():
+    for _ in p.freeProxy11():
         print(_)
 
 # http://nntime.com/proxy-list-01.htm

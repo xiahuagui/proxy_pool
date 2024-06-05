@@ -182,6 +182,9 @@ class ProxyFetcher(object):
         tree = WebRequest().get(url).tree
         for tr in tree.xpath("//tbody[@id='proxylist_table']/tr"):
             ip = "".join(tr.xpath('./td[1]/a/text()')).strip()
+
+            print(ip)
+            
             yield ip
 
     @staticmethod
@@ -308,9 +311,9 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
-    val = p.freeProxy12()
-    print("---------------:", len(val))
-    for _ in val:
-        print(_)
+    p.freeProxy12()
+    # print("---------------:", len(val))
+    # for _ in val:
+    #     print(_)
 
 # http://nntime.com/proxy-list-01.htm

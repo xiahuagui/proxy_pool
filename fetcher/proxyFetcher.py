@@ -15,6 +15,8 @@ __author__ = 'JHao'
 import re
 import json
 from time import sleep
+import sys
+import os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.webRequest import WebRequest

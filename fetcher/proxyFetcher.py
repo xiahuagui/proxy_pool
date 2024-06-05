@@ -229,11 +229,11 @@ class ProxyFetcher(object):
         """ https://www.proxynova.com/proxy-server-list/elite-proxies/ """
         u = "https://www.proxynova.com/proxy-server-list/elite-proxies"
         tree = WebRequest().get(url).tree
-        trs = tree.xpath("//table[@id='proxy_list']//tr")
-        if len(trs)<=1:
+        trs = tree.xpath("//table[@id='tbl_proxy_list']/tbody/tr")
+        if len(trs)<=0:
             return
-        for tr in trs[1:]:
-            ip = "".join(tr.xpath('./td[1]/text()')).strip()
+        for tr in trs:
+            ip = "".join(tr.xpath('./td[1]/abbr/text()')).strip()
             port = "".join(tr.xpath('./td[2]/text()')).strip()
             yield "%s:%s" % (ip, port)
 

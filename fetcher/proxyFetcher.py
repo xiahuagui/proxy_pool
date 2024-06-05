@@ -163,7 +163,7 @@ class ProxyFetcher(object):
         for proxy in proxies:
             yield ':'.join(proxy)
 
-    @staticmethod
+    #@staticmethod
     def freeProxy11():
         """ 稻壳代理 https://www.docip.net/ """
         print("----------11------")
@@ -316,9 +316,10 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
+    p.freeProxy11()
     
     # print("---------------:", len(val))
-    for _ in p.freeProxy11():
-        print(_)
+    # for _ in p.freeProxy11():
+    #     print(_)
 
 # http://nntime.com/proxy-list-01.htm

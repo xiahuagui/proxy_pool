@@ -166,6 +166,7 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy11():
         """ 稻壳代理 https://www.docip.net/ """
+        print("----------11------")
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)
         try:
             for each in r.json['data']:
@@ -315,7 +316,7 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
-    p.freeProxy12()
+    p.freeProxy11()
     # print("---------------:", len(val))
     # for _ in val:
     #     print(_)

@@ -221,7 +221,7 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy14():
         """ https://free-proxy-list.net """
-        u = "https://free-proxy-list.net"
+        url = "https://free-proxy-list.net"
         tree = WebRequest().get(url).tree
         trs = tree.xpath("//table[@class='table table-striped table-bordered']//tr")
         if len(trs)<=1:

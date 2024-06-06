@@ -232,17 +232,17 @@ class ProxyFetcher(object):
             yield "%s:%s" % (ip, port)
 
     #@staticmethod
-    def freeProxy15(self):
-        """ http://free-proxy.cz/en/proxylist/country/US/https/ping/all """
-        url = "http://free-proxy.cz/en/"
-        tree = WebRequest().get(url).tree
-        trs = tree.xpath("//table[@id='proxy_list']//tr")
-        if len(trs)<=1:
-            return
-        for tr in trs[1:]:
-            ip = "".join(tr.xpath('./td[1]/text()')).strip()
-            port = "".join(tr.xpath('./td[2]/span/text()')).strip()
-            print(ip, port)
+    # def freeProxy15(self):
+    #     """ http://free-proxy.cz/en/proxylist/country/US/https/ping/all """
+    #     url = "http://free-proxy.cz/en/"
+    #     tree = WebRequest().get(url).tree
+    #     trs = tree.xpath("//table[@id='proxy_list']//tr")
+    #     if len(trs)<=1:
+    #         return
+    #     for tr in trs[1:]:
+    #         ip = "".join(tr.xpath('./td[1]/text()')).strip()
+    #         port = "".join(tr.xpath('./td[2]/span/text()')).strip()
+    #         print(ip, port)
 
             #yield "%s:%s" % (ip, port)
 
@@ -327,10 +327,10 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
-    p.freeProxy15()
+    #p.freeProxy15()
     
     # print("---------------:", len(val))
-    # for _ in p.freeProxy15():
-    #     print(_)
+    for _ in p.freeProxy16():
+        print(_)
 
 # http://nntime.com/proxy-list-01.htm

@@ -234,7 +234,7 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy15():
         """ http://free-proxy.cz/en/proxylist/country/US/https/ping/all """
-        u = "http://free-proxy.cz/en/proxylist/country/US/https/ping/all"
+        url = "http://free-proxy.cz/en/proxylist/country/US/https/ping/all"
         tree = WebRequest().get(url).tree
         trs = tree.xpath("//table[@id='proxy_list']//tr")
         if len(trs)<=1:
@@ -247,7 +247,7 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy16():
         """ https://www.proxynova.com/proxy-server-list/elite-proxies/ """
-        u = "https://www.proxynova.com/proxy-server-list/elite-proxies"
+        url = "https://www.proxynova.com/proxy-server-list/elite-proxies"
         tree = WebRequest().get(url).tree
         trs = tree.xpath("//table[@id='tbl_proxy_list']/tbody/tr")
         if len(trs)<=0:

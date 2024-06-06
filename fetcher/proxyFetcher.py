@@ -328,7 +328,7 @@ if __name__ == '__main__':
     #p.freeProxy12()
     
     # print("---------------:", len(val))
-    for _ in p.freeProxy13():
+    for _ in p.freeProxy14():
         print(_)
 
 # http://nntime.com/proxy-list-01.htm

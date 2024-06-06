@@ -17,6 +17,8 @@ import json
 from time import sleep
 import sys
 import os
+import requests
+import json
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from util.webRequest import WebRequest
@@ -179,26 +181,22 @@ class ProxyFetcher(object):
     def freeProxy12(self):
         """ https://www.proxydocker.com/ """
         print("----------12------")
-        url = "https://www.proxydocker.com"
-        tree = WebRequest().get(url).text
-
-        with open("/usr/deploy/p12.txt", 'w', encoding="utf-8") as f:
-            f.write(tree)
-
-
-        #print(tree)
-
-        # trs = tree.xpath("//tbody[@id='proxylist_table']/tr")
-        # print(trs)
-
-        # for tr in trs:
-        #     ip = "".join(tr.xpath('./td[1]/a/text()')).strip()
-
-        #     print(ip)
-
-        #     print( tr.xpath('./td[1]/a/text()') )
-
-        #     #yield ip
+        url = "https://www.proxydocker.com/en/api/proxylist"
+        headers = {
+            "Cookie":"_gid=GA1.2.1155490444.1717559357; twk_idm_key=YsmomxBTt9O0DbrJtEq-6; _ga=GA1.2.234643758.1717559357; PHPSESSID=7si2jtn4st2h186597sdanhoc1; FCNEC=%5B%5B%22AKsRol9vKW-6RYgYuJsSDiImcMgnEsd_f2i_JkupYlojiNeQk41hKZSNF-5bHLaO4FR134D1JeOetGhZkT7L6REaIzYK9AR65vNbvhiZ7MOPiEv_cRFbWDf8NZPe_Gi_0RuQCtJvWC7ZPHKz4lF-vUY5rtyMWNzI4w%3D%3D%22%5D%5D; _gat=1; _ga_ME8041R9ED=GS1.2.1717639055.4.0.1717639055.60.0.0; TawkConnectionTime=0; twk_uuid_58fe3f9864f23d19a89aefbe=%7B%22uuid%22%3A%221.WrwK7auSZXQW1x4BJQwasxStuIbsIjHoIkBvDq83uBXLWpLHgLaTfeoRVz70hRgCOYKMYPZlEFV2XfYWknaW5EgOWImnmiwWwP97NOZAOgFHdNhjh8NQ4mEyN%22%2C%22version%22%3A3%2C%22domain%22%3A%22proxydocker.com%22%2C%22ts%22%3A1717639056359%7D; AWSALB=FrpswVZSnRfr0lbTHncDwWNA+zJJbvAmxzKnMGD/bWoOLQprguc4cWUacF7ongtO5AIklHyFr5CsXJUpSGe44w+h/8TFrxSNDfV4tdpIKb/P+pIqmWVgi6AumylE; AWSALBCORS=FrpswVZSnRfr0lbTHncDwWNA+zJJbvAmxzKnMGD/bWoOLQprguc4cWUacF7ongtO5AIklHyFr5CsXJUpSGe44w+h/8TFrxSNDfV4tdpIKb/P+pIqmWVgi6AumylE",
+            "Origin":"https://www.proxydocker.com",
+            "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+        }
+        data = {"token":"Wtk9oFDf9raczh06ySiZE3pRbgVxEDzm4UzmRoxHjJc",'country': 'all','city': 'all','state': 'all','port': 'all','type': 'all','anonymity': 'all','need': 'all','page': 1}
+        r = requests.post(url, headers=headers, data=data, timeout=400)
+        if r.status_code != 200:
+            return
+        rs = r.json()
+        if isinstance(rs, dict)==False or 'proxies' not in rs or isinstance(rs['proxies'], list)==False or len(rs['proxies'])<=0:
+            return
+        for row in rs['proxies']:
+            print(row['ip'], row['port'])
+            #yield "%s:%s" % (row['ip'], row['port'])
 
     @staticmethod
     def freeProxy13():

@@ -189,9 +189,12 @@ class ProxyFetcher(object):
         }
         data = {"token":"Wtk9oFDf9raczh06ySiZE3pRbgVxEDzm4UzmRoxHjJc",'country': 'all','city': 'all','state': 'all','port': 'all','type': 'all','anonymity': 'all','need': 'all','page': 1}
         r = requests.post(url, headers=headers, data=data, timeout=400)
-        if r.status_code != 200:
+        if r.status_code!=200:
+            print(r.status_code)
+            print(r.text)
             return
         rs = r.json()
+        print(rs)
         if isinstance(rs, dict)==False or 'proxies' not in rs or isinstance(rs['proxies'], list)==False or len(rs['proxies'])<=0:
             return
         for row in rs['proxies']:

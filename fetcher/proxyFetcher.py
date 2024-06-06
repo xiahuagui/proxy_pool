@@ -234,7 +234,7 @@ class ProxyFetcher(object):
     #@staticmethod
     def freeProxy15(self):
         """ http://free-proxy.cz/en/proxylist/country/US/https/ping/all """
-        url = "http://free-proxy.cz/en/proxylist/country/US/https/ping/all"
+        url = "http://free-proxy.cz/en/"
         tree = WebRequest().get(url).tree
         trs = tree.xpath("//table[@id='proxy_list']//tr")
         if len(trs)<=1:

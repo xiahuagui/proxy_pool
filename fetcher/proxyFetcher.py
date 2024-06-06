@@ -181,7 +181,12 @@ class ProxyFetcher(object):
         print("----------12------")
         url = "https://www.proxydocker.com"
         tree = WebRequest().get(url).text
-        print(tree)
+
+        with open("/usr/deploy/p12.txt", 'w', encoding="utf-8") as f:
+            f.write(tree)
+
+
+        #print(tree)
 
         # trs = tree.xpath("//tbody[@id='proxylist_table']/tr")
         # print(trs)

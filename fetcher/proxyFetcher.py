@@ -255,7 +255,7 @@ class ProxyFetcher(object):
         if len(trs)<=0:
             return
         for tr in trs:
-            ip = "".join(tr.xpath("string(./td[1]/text())")).strip()
+            ip = "".join(tr.xpath("string(./td[1])")).strip()
             port = "".join(tr.xpath('./td[2]/text()')).strip()
             if port=="":
                 port = "".join(tr.xpath('./td[2]/a/text()')).strip()

@@ -241,7 +241,7 @@ class ProxyFetcher(object):
             return
         for tr in trs[1:]:
             ip = "".join(tr.xpath('./td[1]/text()')).strip()
-            port = "".join(tr.xpath('./td[2]/text()')).strip()
+            port = "".join(tr.xpath('./td[2]/span/text()')).strip()
             yield "%s:%s" % (ip, port)
 
     @staticmethod

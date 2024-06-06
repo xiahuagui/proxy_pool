@@ -231,8 +231,8 @@ class ProxyFetcher(object):
             port = "".join(tr.xpath('./td[2]/text()')).strip()
             yield "%s:%s" % (ip, port)
 
-    @staticmethod
-    def freeProxy15():
+    #@staticmethod
+    def freeProxy15(self):
         """ http://free-proxy.cz/en/proxylist/country/US/https/ping/all """
         url = "http://free-proxy.cz/en/proxylist/country/US/https/ping/all"
         tree = WebRequest().get(url).tree
@@ -242,7 +242,9 @@ class ProxyFetcher(object):
         for tr in trs[1:]:
             ip = "".join(tr.xpath('./td[1]/text()')).strip()
             port = "".join(tr.xpath('./td[2]/span/text()')).strip()
-            yield "%s:%s" % (ip, port)
+            print(ip, port)
+
+            #yield "%s:%s" % (ip, port)
 
     @staticmethod
     def freeProxy16():
@@ -325,10 +327,10 @@ class ProxyFetcher(object):
 
 if __name__ == '__main__':
     p = ProxyFetcher()
-    #p.freeProxy12()
+    p.freeProxy15()
     
     # print("---------------:", len(val))
-    for _ in p.freeProxy15():
-        print(_)
+    # for _ in p.freeProxy15():
+    #     print(_)
 
 # http://nntime.com/proxy-list-01.htm
